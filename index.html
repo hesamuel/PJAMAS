@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chatbot Prototype Demo!</title>
+
+    <!-- this is for mobile screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/favicon.png" />
+
+    <!-- this is for our css files - we have to link our html file to the css files -->
+    <link rel="stylesheet" media="all" href="../component/styles/setup.css" />
+    <link rel="stylesheet" media="all" href="../component/styles/says.css" />
+    <link rel="stylesheet" media="all" href="../component/styles/reply.css" />
+    <link rel="stylesheet" media="all" href="../component/styles/typing.css" />
+    <link rel="stylesheet" media="all" href="../component/styles/input.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- css stylesheet for the background of the web page (no need to worry about this) -->
+    <style>
+      body {
+        background: #696969;
+      }
+      .bubble-container {
+        height: 100vh;
+      }
+      .bubble-container .input-wrap textarea {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header for the chatbot  -->
+    <div id="chat">
+      <div class="header">
+        <img
+          src="https://cdn.glitch.com/bd99a092-26b2-482b-8a19-60361c2fef70%2Fdrift_bot_900_final.jpg?v=1589860051412"
+          width="100px;"
+        />
+        <div>
+          <h1>P J A M A S</h1>
+          <p>The Photojournalism Chatbot</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- This is to power the chatbot, you do not need to worry about this area -->
+    <script src="../component/js/Bubbles.js"></script>
+    <script>
+      var chatWindow = new Bubbles(
+        document.getElementById("chat"),
+        "chatWindow",
+        {
+          inputCallbackFn: function(o) {
+            // this is for the bot - don't worry
+            var match = function(key) {
+              setTimeout(function() {
+                chatWindow.talk(convo, key); // restart current convo from point found in the answer
+              }, 600);
+            };
+
+            // sanitize text for search function - for the bot
+            var strip = function(text) {
+              return text
+                .toLowerCase()
+                .replace(/[\s.,\/#!$%\^&\*;:{}=\-_'"`~()]/g, "");
+            };
+
+            // search function -  for the bot
+            var found = false;
+            o.convo[o.standingAnswer].reply.forEach(function(e, i) {
+              strip(e.human_response).includes(strip(o.input)) &&
+              o.input.length > 0
+                ? (found = e.bot_answer)
+                : found
+                ? null
+                : (found = false);
+            });
+            found ? match(found) : miss();
+          }
+        }
+      ); // section for setting up bot is finished.
+
+      // This is where your conversation is going to happen! Only focus here!
+      var convo = {
+        // first section
+        // <<INTRODUCTION>>
+        intro: {
+          bot_says: [
+            "Hey, PJAMAS here! As you might have guessed, PJ.A.M.A.S. stands for <i>PhotoJournalism Assistance Made Available and Simple</i>. PJAMAS is here to help you make better decisions about your photojournalism assignment.",
+            "<img src=https://media.giphy.com/media/oit9mu0v5LqzC/giphy.gif />"
+          ],
+          human_reply: [
+            {
+              human_response:
+                "Not Ok! I am not ready to learn journalism from a chatbot",
+              bot_answer: "exit-msg"
+            },
+            {
+              human_response: "Ok! Tell me more about #photojournalism",
+              bot_answer: "what-is-photojourn"
+            },
+            {
+              human_response: "OK! Skip the intros! I am ready to WERK!",
+              bot_answer: "photojourn-werk"
+            }
+          ]
+        },
+        //second section
+        // <<EARLY EXIT MESSAGE>>
+
+        "exit-msg": {
+          bot_says: [
+            "Sure. Thank you for using PJAMAS.",
+            "Before you go, here are some resources that you might find useful:",
+            '<a href="https://www.worldpressphoto.org/news/2020/winners-announced/39820/>" target="_blank">World Press Photo Gallery</a>',
+            '<a href="https://www.poy.org/>" target="_blank">Pictures of the Year(International) Gallery</a>',
+            "Goodbye!"
+          ],
+          human_reply: [
+            {
+              human_response: "Thanks PJAMAS! Bye!",
+              bot_answer: "#"
+            }
+          ]
+        },
+
+        //third section
+        // <<WHAT IS PHOTOJOURN?>>
+
+        "what-is-photojourn": {
+          bot_says: [
+            "Sure! The job of a photojournalist is multi-facetted.",
+            "If you are interested in:",
+            "- finding an awesome story",
+            "- telling that story visually",
+            "- convincing someone else that the story is truly awesome",
+            "then you have come to the right place!"
+          ],
+          human_reply: [
+            {
+              human_response: "OK, got it! I am ready to WERK!",
+              bot_answer: "photojourn-werk"
+            },
+            {
+              human_response:
+                "Cool! I would like to see the work of some real #photojournalists",
+              bot_answer: "photojourn-facts"
+            }
+          ]
+        },
+
+        //fourth section
+        // <<X-TRA PHOTOJOURNALISM FACTS>>
+
+        "photojourn-facts": {
+          bot_says: [
+            "Pick a photojournalist you would like to find out more about:"
+          ],
+          human_reply: [
+            {
+              human_response: "Wong Maye-E",
+              bot_answer: "maye-profile" // "Wong is...."
+            },
+            {
+              human_response: "Henri Cartier-Bresson",
+              bot_answer: "hcb-profile" // "H.C.B. is...."
+            },
+            {
+              human_response: "Damon Winter",
+              bot_answer: "damon-profile" // "Multidisciplinary....NYTimes, etc..."
+            },
+            {
+              human_response: "Neo Xiaobin",
+              bot_answer: "xiaobin-profile" // "Icon de Martell......She now curates and photographs for HOME IN FOCUS....links to her insta"
+            }
+          ]
+        },
+
+        //profile #1
+        // <<PROFILE - WONG MAYE-E>>
+
+        "maye-profile": {
+          bot_says: [
+            "In her 17-year career with the Associated Press(AP), Maye-E has covered global news events such as the Hong Kong political protests, the devastation of typhoon Haiyan in the Philippines and the Rohingya crisis in Myanmar.",
+            "<img src=https://www.objectifs.com.sg/wp-content/uploads/2018/08/XWM_003_web.jpg />", //Rohingya Image
+            "During her stint as the AP's lead photographer in North Korea, she had rare access (albeit with government controls) to make images of daily life in the reclusive state.",
+            "<img src=https://images.squarespace-cdn.com/content/v1/57cf18ae6b8f5ba693497e1a/1474560304461-9Z9TVRW3TG1JYS9L8LV6/ke17ZwdGBToddI8pDm48kJ5so5pcSANEKDIKVU48-hwUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcu7CVa2tTiWSNN0F4Z-KsLO_-CRGUrl8HQ7Ns5n9_ylkeEzYIkqvjbSlLdKnJdfzY/ap68834418134_14.jpg?format=1500w />",
+            "She is now a photographer and editor with the agency's Global Enterprise team in New York.",
+            'Get to know her better on <a href="https://www.instagram.com/p/B9XrqSAJkg9/ >" target="_blank">instagram</a>.' //
+          ],
+          human_reply: [
+            {
+              human_response:
+                "I would like to get to know more photojournalists!",
+              bot_answer: "photojourn-facts"
+            },
+            {
+              human_response: "Cool! I am ready to get to WERK!",
+              bot_answer: "photojourn-werk" // "H.C.B. is...."
+            }
+          ]
+        },
+
+        //profile #2
+        // <<PROFILE - HENRI CARTIER>>
+
+        "hcb-profile": {
+          bot_says: [
+            "The late Henri Cartier-Bresson(1908-2003) pioneered the street photography genre, which paved the way for photojournalism.",
+            "The central idea of his work is capturing <i> the decisive moment</i>",
+            "<img src=https://i1.wp.com/erickimphotography.com/blog/wp-content/uploads/2011/08/henri_cartier_bresson_bicycle.jpg />",
+            "<img src=https://cdn.britannica.com/s:700x500/32/43732-050-97684142/Children-photograph-Seville-Spain-Henri-Cartier-Bresson-1933.jpg />", //
+            "He explained: <i>For me the camera is a sketch book, an instrument of intuition and spontaneity, the master of the instant which, in visual terms, questions and decides simultaneously. It is by economy of means that one arrives at simplicity of expression.</i>",
+            'He was one of the founding members of the elite <a href="https://www.magnumphotos.com/ >" target="_blank">Magnum Photos</a> agency.',
+            'Photographer and blogger Eric Kim put together a list of <a href="https://erickimphotography.com/blog/2011/08/22/10-things-henri-cartier-bresson-can-teach-you-about-street-photography/ >" target="_blank">ten things we can learn</a> from H.C.B.'
+          ],
+          human_reply: [
+            {
+              human_response:
+                "I would like to get to know more photojournalists!",
+              bot_answer: "photojourn-facts"
+            },
+            {
+              human_response: "Cool! I am ready to get to WERK!",
+              bot_answer: "photojourn-werk" // "H.C.B. is...."
+            }
+          ]
+        },
+
+        //fifth section
+        // <<PHOTOJOURN WERK - Our three sections of self-help
+
+        "photojourn-werk": {
+          bot_says: ["Great! What would you like to explore first?"],
+          human_reply: [
+            {
+              human_response:
+                "How do I find an awesome profile with an awesome story to tell?",
+              bot_answer: "#"
+            },
+            {
+              human_response: "How do I write awesome captions?",
+              bot_answer: "#"
+            },
+            {
+              human_response:
+                "In the context of photojournalism, what makes a picture good?",
+              bot_answer: "#"
+            }
+          ]
+        }
+
+        //make sure you always keep this as this closes line 76!!!!!!
+      };
+      //make sure you always keep this as this closes line 76!!!!!!
+
+      //Do not worry about this!
+      chatWindow.talk(convo);
+    </script>
+  </body>
+</html>
