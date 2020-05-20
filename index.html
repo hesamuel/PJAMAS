@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Chatbot Prototype Demo!</title>
+    <title>P Y . J . A . M . A . S .</title>
 
     <!-- this is for mobile screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -100,6 +100,10 @@
               bot_answer: "exit-msg"
             },
             {
+              human_response: "Who are some famous photojournalists?",
+              bot_answer: "photojourn-facts"
+            },
+            {
               human_response: "Ok! Tell me more about #photojournalism",
               bot_answer: "what-is-photojourn"
             },
@@ -116,8 +120,8 @@
           bot_says: [
             "Sure. Thank you for using PJAMAS.",
             "Before you go, here are some resources that you might find useful:",
-            '<a href="https://www.worldpressphoto.org/news/2020/winners-announced/39820/>" target="_blank">World Press Photo Gallery</a>',
-            '<a href="https://www.poy.org/>" target="_blank">Pictures of the Year(International) Gallery</a>',
+            '<a href="https://www.worldpressphoto.org/" target="_blank">World Press Photo </a>Gallery',
+            '<a href="https://www.poy.org/" target="_blank">Pictures of the Year(International) </a>Gallery',
             "Goodbye!"
           ],
           human_reply: [
@@ -186,11 +190,11 @@
         "maye-profile": {
           bot_says: [
             "In her 17-year career with the Associated Press(AP), Maye-E has covered global news events such as the Hong Kong political protests, the devastation of typhoon Haiyan in the Philippines and the Rohingya crisis in Myanmar.",
-            "<img src=https://www.objectifs.com.sg/wp-content/uploads/2018/08/XWM_003_web.jpg />", //Rohingya Image
-            "During her stint as the AP's lead photographer in North Korea, she had rare access (albeit with government controls) to make images of daily life in the reclusive state.",
+            "<img src=https://www.objectifs.com.sg/wp-content/uploads/2018/08/XWM_003_web.jpg >", //Rohingya Image
+            "During her stint as the AP's lead photographer in North Korea, she had rare access (working within strict government boundaries) to make images of daily life in the reclusive state.",
             "<img src=https://images.squarespace-cdn.com/content/v1/57cf18ae6b8f5ba693497e1a/1474560304461-9Z9TVRW3TG1JYS9L8LV6/ke17ZwdGBToddI8pDm48kJ5so5pcSANEKDIKVU48-hwUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcu7CVa2tTiWSNN0F4Z-KsLO_-CRGUrl8HQ7Ns5n9_ylkeEzYIkqvjbSlLdKnJdfzY/ap68834418134_14.jpg?format=1500w />",
             "She is now a photographer and editor with the agency's Global Enterprise team in New York.",
-            'Get to know her better on <a href="https://www.instagram.com/p/B9XrqSAJkg9/ >" target="_blank">instagram</a>.' //
+            'Get to know her better on <a href="https://www.instagram.com/p/B9XrqSAJkg9/" target="_blank">instagram</a>.' //
           ],
           human_reply: [
             {
@@ -200,7 +204,7 @@
             },
             {
               human_response: "Cool! I am ready to get to WERK!",
-              bot_answer: "photojourn-werk" // "H.C.B. is...."
+              bot_answer: "photojourn-werk"
             }
           ]
         },
@@ -215,8 +219,8 @@
             "<img src=https://i1.wp.com/erickimphotography.com/blog/wp-content/uploads/2011/08/henri_cartier_bresson_bicycle.jpg />",
             "<img src=https://cdn.britannica.com/s:700x500/32/43732-050-97684142/Children-photograph-Seville-Spain-Henri-Cartier-Bresson-1933.jpg />", //
             "He explained: <i>For me the camera is a sketch book, an instrument of intuition and spontaneity, the master of the instant which, in visual terms, questions and decides simultaneously. It is by economy of means that one arrives at simplicity of expression.</i>",
-            'He was one of the founding members of the elite <a href="https://www.magnumphotos.com/ >" target="_blank">Magnum Photos</a> agency.',
-            'Photographer and blogger Eric Kim put together a list of <a href="https://erickimphotography.com/blog/2011/08/22/10-things-henri-cartier-bresson-can-teach-you-about-street-photography/ >" target="_blank">ten things we can learn</a> from H.C.B.'
+            'He was one of the founding members of the elite <a href="https://www.magnumphotos.com" target="_blank">Magnum Photos</a> agency.',
+            'Photographer and blogger Eric Kim put together a list of <a href="https://erickimphotography.com/blog/2011/08/22/10-things-henri-cartier-bresson-can-teach-you-about-street-photography" target="_blank">ten things we can learn</a> from H.C.B.'
           ],
           human_reply: [
             {
@@ -227,6 +231,57 @@
             {
               human_response: "Cool! I am ready to get to WERK!",
               bot_answer: "photojourn-werk" // "H.C.B. is...."
+            }
+          ]
+        },
+
+        //profile #3
+        // <<PROFILE - NEO XIAOBIN>>
+        // IMAGE LINK >>> "<img src=https://URL />",
+        // URL HYPERLINK >>> <a href="https://URL" target="_blank">WORDS</a>
+        "xiaobin-profile": {
+          bot_says: [
+            'Neo Xiaobin most prolific staff photojournalists from The Straits Times(Singapore), having worked on several <a href="https://bit.ly/3bOl0mn" target="_blank">visual features</a> and videos for the the national broadsheet in her career there.',
+            "<img src=https://bit.ly/2zP9wBR />",
+            'In 2014, she won the S$30,000 <a href="https://bit.ly/2WNazuW" target="_blank">Icon de Martell</a> photography prize.',
+            "<img src=https://bit.ly/2zUIRmS />",
+            "<img src=https://bit.ly/2LG1bTy />",
+            'See more of her images on <a href="https://bit.ly/36gaFhZ" target="_blank">instagram</a>'
+          ],
+          human_reply: [
+            {
+              human_response:
+                "I would like to get to know more photojournalists!",
+              bot_answer: "photojourn-facts"
+            },
+            {
+              human_response: "Cool! I am ready to get to WERK!",
+              bot_answer: "photojourn-werk" // "H.C.B. is...."
+            }
+          ]
+        },
+
+        //profile #4
+        // <<PROFILE - DAMON WINTER>>
+        // IMAGE LINK >>> "<img src=https://URL />",
+        // URL HYPERLINK >>> <a href="https://URL" target="_blank">WORDS</a>
+        "damon-profile": {
+          bot_says: [
+            "Damon Winter is one of the stars of the much-respected team of New York Times photojournalists.",
+            'He received a very prestigious <a href="https://bit.ly/2WL31J0" target="_blank">Pulitzer Prize</a> for feature photography in 2009 for his work on the Obama presidential campaign trail',
+            "<img src=https://bit.ly/3g6gliZ />",
+            'He also won an award and caused some controversies when he shot an assignment <a href="https://bit.ly/3g95iW7" target="_blank">in a warzone with an iPhone</a>',
+            "<img src=https://bit.ly/2ToXfL4 />"
+          ],
+          human_reply: [
+            {
+              human_response:
+                "I would like to get to know more photojournalists!",
+              bot_answer: "photojourn-facts"
+            },
+            {
+              human_response: "Cool! I am ready to get to WERK!",
+              bot_answer: "photojourn-werk"
             }
           ]
         },
